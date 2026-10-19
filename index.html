@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gửi chị Tâm 💌</title>
+<meta property="og:title" content="Gửi chị Tâm 💌">
+<meta property="og:description" content="Có một lá thư nhỏ đang đợi chị ở đây nè.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💌</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Be+Vietnam+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffe4ea; --bg2:#ffd0dc; --paper:#fffafb; --ink:#4a2338;
+  --soft:#8a5a6e; --berry:#e8456b; --mint:#c6ecd9; --butter:#fff1b8;
+  --script:"Pacifico","Segoe Script",cursive;
+  --body:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{min-height:100%}
+body{
+  min-height:100vh;font-family:var(--body);color:var(--ink);line-height:1.75;
+  background:radial-gradient(circle at 20% 10%,var(--bg2),transparent 45%),var(--bg);
+  overflow-x:hidden;
+}
+#fall{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:5}
+#fall span{position:absolute;top:-40px;animation:drop linear forwards;will-change:transform}
+@keyframes drop{to{transform:translate3d(var(--dx),110vh,0) rotate(var(--rot))}}
+
+/* Màn phong bì */
+#intro{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;padding:24px;text-align:center}
+#intro h1{font-family:var(--script);font-weight:400;font-size:clamp(2rem,8vw,3.2rem);color:var(--berry);line-height:1.3}
+#intro p{color:var(--soft);font-size:.95rem}
+.env{
+  width:min(280px,76vw);aspect-ratio:1.45;position:relative;border:0;cursor:pointer;background:none;
+  animation:bob 2.6s ease-in-out infinite;
+}
+.env:focus-visible{outline:3px solid var(--berry);outline-offset:8px;border-radius:12px}
+@keyframes bob{50%{transform:translateY(-8px) rotate(-1.5deg)}}
+.env .back{position:absolute;inset:0;background:#ffb8c8;border-radius:12px;box-shadow:0 14px 30px rgba(232,69,107,.25)}
+.env .flap{position:absolute;left:0;right:0;top:0;height:58%;background:#ff9db4;
+  clip-path:polygon(0 0,100% 0,50% 100%);border-radius:12px 12px 0 0;transform-origin:top;transition:transform .5s}
+.env .front{position:absolute;inset:0;background:#ffc9d6;border-radius:12px;
+  clip-path:polygon(0 0,50% 55%,100% 0,100% 100%,0 100%)}
+.env .seal{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);font-size:2.2rem;z-index:2;filter:drop-shadow(0 3px 4px rgba(0,0,0,.15))}
+.env.open .flap{transform:rotateX(180deg)}
+.env.open{animation:none}
+
+/* Lá thư */
+#card{display:none;padding:40px 18px 80px}
+#card.show{display:block}
+.wrap{max-width:560px;margin:0 auto}
+.paper{
+  background:var(--paper);border-radius:6px;padding:36px 28px 32px;
+  box-shadow:0 18px 40px rgba(120,40,70,.16);transform:rotate(-.6deg);position:relative;
+  background-image:repeating-linear-gradient(transparent 0,transparent 31px,#ffe1e8 31px,#ffe1e8 32px);
+  background-position:0 20px;
+}
+.paper::before{ /* mảnh băng dính */
+  content:"";position:absolute;top:-14px;left:50%;width:96px;height:28px;transform:translateX(-50%) rotate(2deg);
+  background:var(--butter);opacity:.9;box-shadow:0 1px 3px rgba(0,0,0,.1)
+}
+.paper h2{font-family:var(--script);font-weight:400;font-size:clamp(1.7rem,6.5vw,2.3rem);color:var(--berry);line-height:1.3;margin-bottom:6px}
+.date{font-size:.85rem;color:var(--soft);margin-bottom:22px}
+.paper p{margin-bottom:16px;font-size:1rem}
+.sign{margin-top:22px;text-align:right;font-family:var(--script);font-size:1.25rem;color:var(--berry)}
+.ps{margin-top:18px;font-size:.88rem;color:var(--soft)}
+
+.notes{display:grid;gap:14px;margin:38px 0 10px}
+.notes h3{font-family:var(--script);font-weight:400;font-size:1.35rem;color:var(--berry);text-align:center;margin-bottom:2px}
+.note{padding:14px 18px;border-radius:14px;font-size:.95rem}
+.note:nth-of-type(1){background:var(--mint);transform:rotate(.8deg)}
+.note:nth-of-type(2){background:var(--butter);transform:rotate(-.9deg)}
+.note:nth-of-type(3){background:#ffd6e0;transform:rotate(.5deg)}
+
+.ask{margin-top:44px;text-align:center}
+.ask p{font-weight:500;font-size:1.05rem;margin-bottom:18px}
+.btns{position:relative;height:170px;touch-action:manipulation}
+.btn{
+  font-family:var(--body);font-weight:600;font-size:1rem;border:0;border-radius:999px;cursor:pointer;
+  padding:13px 24px;transition:transform .15s;
+}
+.btn:active{transform:scale(.96)}
+.btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.yes{background:var(--berry);color:#fff;box-shadow:0 8px 18px rgba(232,69,107,.35)}
+.no{background:#fff;color:var(--soft);border:2px solid #f3c2cf;position:absolute;left:50%;top:90px;transform:translateX(-50%);pointer-events:none;transition:left .25s,top .25s}
+.row{display:flex;justify-content:center;gap:14px}
+#answer{display:none;margin-top:10px;font-family:var(--script);font-size:1.5rem;color:var(--berry);line-height:1.5}
+#answer small{display:block;font-family:var(--body);font-size:.9rem;color:var(--soft);margin-top:8px}
+footer{text-align:center;margin-top:50px;font-size:.8rem;color:var(--soft)}
+
+@media (prefers-reduced-motion:reduce){
+  .env{animation:none}#fall{display:none}
+}
+</style>
+</head>
+<body>
+<div id="fall" aria-hidden="true"></div>
+
+<section id="intro">
+  <h1>Chị Tâm ơi,<br>có thư cho chị nè</h1>
+  <button class="env" id="env" aria-label="Mở thư">
+    <span class="back"></span><span class="flap"></span><span class="front"></span><span class="seal">💗</span>
+  </button>
+  <p>chạm vào để mở nha</p>
+</section>
+
+<main id="card">
+  <div class="wrap">
+    <article class="paper">
+      <h2>Chị Tâm ơi,</h2>
+      <div class="date">20/10/2026</div>
+
+      <p>Hôm nay 20/10 nên em viết vài dòng. Thật ra em nghĩ khá lâu, mà viết xong đọc lại vẫn thấy hơi ngại 😅 Nhưng thôi, ngại cũng phải gửi.</p>
+      <p>Chúc chị hôm nay được ăn món chị thích, được nhận thật nhiều lời chúc xịn, và không có tin nhắn công việc nào làm phiền hết.</p>
+      <p>Em không biết chị có để ý không, nhưng mỗi lần nói chuyện với chị em đều thấy vui hơn bình thường một xíu. Kiểu vui vui không giải thích được á. Em cũng không định giải thích đâu, để vậy cho bí ẩn.</p>
+      <p>Cảm ơn chị vì đã xuất hiện trong mấy ngày bình thường của em nha. Chúc chị luôn xinh, luôn cười, và luôn có người nhớ tới chị. Ví dụ như em chẳng hạn.</p>
+
+      <div class="sign">em 💗</div>
+      <div class="ps">P/S: chị kéo xuống dưới nữa đi, còn một câu hỏi nhỏ.</div>
+    </article>
+
+    <section class="notes">
+      <h3>Mấy điều em hay nghĩ về chị</h3>
+      <div class="note">Chị vui là em quên luôn mình đang buồn chuyện gì.</div>
+      <div class="note">Nói chuyện với chị dễ chịu lắm, không cần cố gắng gì hết.</div>
+      <div class="note">Chị dịu dàng, chị dễ thương lắm lắm lun ó:3.</div>
+    </section>
+
+    <section class="ask">
+      <p>Cuối tuần này đi xem phim với em nha chị? 🍿</p>
+      <div class="btns" id="btns">
+        <div class="row"><button class="btn yes" id="yes">Đi nha 😳</button></div>
+        <button class="btn no" id="no">Không đi</button>
+      </div>
+      <div id="answer">Hẹn nha chị! 🍿<small>Em vui lắm luôn. Hẹn chị cuối tuần ạ<3333.</small></div>
+    </section>
+
+    <footer>Làm bằng một buổi tối và hơi nhiều sự hồi hộp.</footer>
+  </div>
+</main>
+
+<script>
+const fall = document.getElementById('fall');
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function drop(symbols, n, spread){
+  if(reduce) return;
+  for(let i=0;i<n;i++){
+    const s = document.createElement('span');
+    s.textContent = symbols[Math.floor(Math.random()*symbols.length)];
+    s.style.left = Math.random()*100 + 'vw';
+    s.style.fontSize = (14 + Math.random()*16) + 'px';
+    s.style.opacity = .6 + Math.random()*.4;
+    s.style.animationDuration = (5 + Math.random()*5) + 's';
+    s.style.animationDelay = (Math.random()*spread) + 's';
+    s.style.setProperty('--dx', (Math.random()*160-80) + 'px');
+    s.style.setProperty('--rot', (Math.random()*540-270) + 'deg');
+    fall.appendChild(s);
+    setTimeout(()=>s.remove(), (spread+11)*1000);
+  }
+}
+
+// Cánh hoa rơi nhẹ ngoài màn hình đầu
+drop(['🌸','🌷','💗'], 14, 6);
+
+const env = document.getElementById('env');
+env.addEventListener('click', () => {
+  env.classList.add('open');
+  setTimeout(() => {
+    document.getElementById('intro').style.display = 'none';
+    document.getElementById('card').classList.add('show');
+    window.scrollTo(0,0);
+    drop(['🌸','🌷','💗','🌼'], 26, 5);
+  }, 650);
+});
+
+// Nút "Để chị suy nghĩ" chạy trốn
+const no = document.getElementById('no');
+const box = document.getElementById('btns');
+let tries = 0;
+const texts = ['Chị bận rồi','Chị không rảnh','Không là không','Nhất quyết không đi'];
+const yes = document.getElementById('yes');
+function dodge(){
+  tries++;
+  no.textContent = texts[Math.min(tries-1, texts.length-1)];
+  const k = Math.min(1 + tries*0.08, 1.5);
+  const maxX = Math.max(0, box.clientWidth - no.offsetWidth);
+  const minY = yes.offsetHeight * k + 28; // luôn nằm dưới nút Đi nha
+  const maxY = Math.max(minY, box.clientHeight - no.offsetHeight);
+  no.style.transform = 'none';
+  no.style.left = (Math.random()*maxX) + 'px';
+  no.style.top = (minY + Math.random()*(maxY - minY)) + 'px';
+  yes.style.transform = 'scale(' + k + ')';
+}
+// Nút này không nhận chạm (pointer-events:none), nên không thể bấm trúng.
+// Ngón tay hoặc chuột tới gần là nó tự chạy đi chỗ khác.
+let lastMove = 0;
+function near(e){
+  const p = (e.touches && e.touches[0]) || e;
+  const r = no.getBoundingClientRect();
+  const pad = 70;
+  if(p.clientX > r.left-pad && p.clientX < r.right+pad &&
+     p.clientY > r.top-pad && p.clientY < r.bottom+pad){
+    const now = Date.now();
+    if(now - lastMove > 250){ lastMove = now; dodge(); }
+  }
+}
+['touchstart','touchmove','pointerdown','pointermove'].forEach(ev =>
+  document.addEventListener(ev, near, {passive:true}));
+
+document.getElementById('yes').addEventListener('click', () => {
+  box.style.display = 'none';
+  document.getElementById('answer').style.display = 'block';
+  document.querySelector('.ask p').style.display = 'none';
+  drop(['🍿','🎬','💗','✨','🌸'], 50, 2);
+});
+</script>
+</body>
+</html>
